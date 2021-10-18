@@ -1,4 +1,4 @@
-const bodyParser = require("body-parser");
+const bodyparser = require("body-parser");
 const express= require("express");
 const https =require("https");
 const { urlencoded } = require("body-parser");
@@ -6,16 +6,16 @@ const { urlencoded } = require("body-parser");
 
 const app=express();
 
-   app.use(bodyParser.urlencoded({extended: false}));  // to support URL-encoded bodies
+   app.use(bodyparser.urlencoded({extended: false}));  // to support URL-encoded bodies
  app.get("/",function(req,res) {
 
-res.sendFile(__dirname +"/index.html");
+res.sendFile(__dirname + "/index.html");
 });
 
 
 app.post("/",function(req,res){
     
-    const query="req.body.cityname"
+    const query = req.body.cityname
     const apikey="f59dd5cee1e562c3b6f0b21d84b498c2"
     const unit="matric"
     const url="https://api.openweathermap.org/data/2.5/weather?q="+ query + "&appid="+ apikey +"&units= " + unit
@@ -32,7 +32,7 @@ app.post("/",function(req,res){
     const imageURL = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
     res.write("<p>The weather is currently " + weatherDescription + "</p>");
     res.write("<h1> The temprature in " + query + " is " + temp + " degrees celcious")
-    res.write("<img src=>" + imageURL +">");
+    res.write("<img src= " + imageURL +">");
     res.send();
     });
         
